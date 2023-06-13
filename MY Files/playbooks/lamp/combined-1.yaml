@@ -1,0 +1,77 @@
+---
+- name: installing lamp on redhat
+  hosts: all
+  become: yes
+  tasks:
+    - name: print os details
+      ansible.builtin.debug:
+        msg: "family: {{ ansible_facts['os_family'] }} distribution: {{ ansible_facts['distribution'] }}"
+
+    - name: installing httpd
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+      when: ansible_facts['os_family'] == 'RedHat'
+
+    - name: Enabling and starting httpd
+      ansible.builtin.systemd:
+        name: httpd
+        enabled: yes
+        state: started
+      when: ansible_facts['os_family'] == 'RedHat'
+
+    - name: installing PHP
+      ansible.builtin.yum:
+        name: 
+          - php
+        state: present
+      notify:
+        - restart httpd
+      when: ansible_facts['os_family'] == 'RedHat'
+
+    - name: copying info.php file
+      ansible.builtin.copy:
+        src: info.php
+        dest: /var/www/html/info.php
+      notify:
+        - restart httpd
+      when: ansible_facts['os_family'] == 'RedHat'
+
+
+    - name: installing apache2 
+      ansible.builtin.apt:
+        name: apache2
+        update_cache: yes
+        state: present
+      when: ansible_facts['os_family'] == 'Ubuntu'
+
+    - name: installing PHP
+      ansible.builtin.apt:
+        name:
+          - php
+          - libapache2-mod-php
+          - php-mysql
+      notify:
+        - Restart apache2
+      when: ansible_facts['os_family'] == 'Ubuntu'
+
+    - name: copying php.info file
+      ansible.builtin.copy:
+        src: info.php
+        dest: /var/www/your_domain/info.php
+      notify:
+        - Restart apache2
+      when: ansible_facts['os_family'] == 'Ubuntu'
+
+
+  handlers:
+    - name: restart httpd
+      ansible.builtin.systemd:
+        name: httpd
+        state: restarted
+
+    - name: Restart apache2
+      ansible.builtin.systemd:
+        name: apache2
+        state: restarted
+      

@@ -1,0 +1,11 @@
+---
+- name: installing jdk-17
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing jdk-17
+      ansible.builtin.apt:
+        name: openjdk-17-jdk
+        update_cache: yes
+        state: present
+      
