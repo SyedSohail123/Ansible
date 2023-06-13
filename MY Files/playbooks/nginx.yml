@@ -1,0 +1,15 @@
+---
+- name: nginx-jdk8 
+  hosts: all
+  become: yes
+  tasks:
+    - name: installing nginx
+      ansible.builtin.apt:
+        name: nginx
+        update_cache: yes
+        state: present
+    - name: installing jdk-8
+      ansible.builtin.apt:
+        name: openjdk-8-jdk
+        update_cache: yes
+        state: present
