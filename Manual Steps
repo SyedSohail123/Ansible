@@ -23,3 +23,11 @@ sudo -i
 echo '<?php phpinfo(); ?>' > /var/www/html/info.php
 exit
 sudo systemctl restart httpd
+
+#### dotnet7:
+-------------
+
+wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+sudo chmod +x ./dotnet-install.sh
+./dotnet-install.sh --channel 7.0
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools

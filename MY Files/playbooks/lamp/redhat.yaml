@@ -17,13 +17,13 @@
         name: 
           - php
         state: present
-      notify
+      notify:
         - restart httpd
     - name: copying info.php file
-      ansible.builtin.file:
+      ansible.builtin.copy:
         src: info.php
         dest: /var/www/html/info.php
-      notify
+      notify:
         - restart httpd
   handlers:
     - name: restart httpd
