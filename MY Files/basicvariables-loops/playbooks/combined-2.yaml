@@ -1,0 +1,52 @@
+---
+- name: installing lamp on redhat
+  hosts: all
+  become: yes
+  vars:
+    info_page_path: /var/www/html/info.php
+  tasks:
+    - name: print os details
+      ansible.builtin.debug:
+        msg: "family: {{ ansible_facts['os_family'] }} distribution: {{ ansible_facts['distribution'] }}"
+    
+    - name: print ansible facts
+      ansible.builtin.debug:
+        var: ansible_facts['default_ipv4']
+
+    - name: installing apache
+      ansible.builtin.package:
+        name: "{{ package_name }}"
+        state: present
+      
+
+    - name: Enabling and starting apache
+      ansible.builtin.systemd:
+        name: "{{ package_name }}"
+        enabled: yes
+        state: started
+      
+
+    - name: installing PHP
+      ansible.builtin.package:
+        name: "{{ item }}"         
+        state: present
+      loop: "{{ php_packages }}"
+      notify:
+        - restart apache
+      
+
+    - name: copying info.php file
+      ansible.builtin.copy:
+        src: info.php
+        dest: "{{ info_page_path }}"
+      notify:
+        - restart httpd
+    
+  handlers:
+    - name: restart apache
+      ansible.builtin.systemd:
+        name: "{{ package_name }}"
+        state: restarted
+
+    
+      

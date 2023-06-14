@@ -6,6 +6,10 @@
     - name: print os details
       ansible.builtin.debug:
         msg: "family: {{ ansible_facts['os_family'] }} distribution: {{ ansible_facts['distribution'] }}"
+    
+    - name: print ansible facts
+      ansible.builtin.debug:
+        var: ansible_facts['default_ipv4']
 
     - name: installing httpd
       ansible.builtin.yum:
