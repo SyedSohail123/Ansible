@@ -20,6 +20,9 @@
       ansible.builtin.package:
         name: "{{ package_name }}"
         state: present
+    - name: debug apache installed
+      ansible.builtin.debug:
+        msg: "Installed apache server using package {{ package_name }}"
       
 
     - name: Enabling and starting apache
@@ -27,6 +30,9 @@
         name: "{{ package_name }}"
         enabled: yes
         state: started
+    - name: debug apache service started and enabled
+      ansible.builtin.debug:
+        msg: "Enabled and started apache"
       
 
     - name: installing PHP
@@ -36,6 +42,9 @@
       loop: "{{ php_packages }}"
       notify:
         - restart apache
+    - name: debug php modules installed
+      ansible.builtin.debug:
+        msg: "Installed php-packages {{ php_packages }}"
       
 
     - name: copying info.php file
@@ -44,6 +53,9 @@
         dest: "{{ info_page_path }}"
       notify:
         - restart httpd
+    - name: debug onfo.php 
+      ansible.builtin.debug:
+        msg: "Created info.php at {{ info_page_path }}"
     
   handlers:
     - name: restart apache
