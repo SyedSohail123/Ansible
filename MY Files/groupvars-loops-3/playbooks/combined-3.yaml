@@ -1,5 +1,5 @@
 ---
-- name: installing lamp on redhat
+- name: installing lamp server
   hosts: all
   become: yes
   tasks:
