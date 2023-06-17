@@ -53,9 +53,10 @@
         state: directory
 
     - name: Adding execute permissions to shell scripts in bin directory
-      path: "{{ homedir }}/latest/bin/*.sh"
-      state: touch
-      mode: u+x,g+x,o+x
+      ansible.builtin.file:
+        path: "{{ homedir }}/latest/bin/*.sh"
+        state: touch
+        mode: u+x,g+x,o+x
 
       
         
