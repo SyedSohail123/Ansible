@@ -67,6 +67,7 @@
         name: tomcat
         enabled: yes
         state: started
+        daemon_reload: yes
 
   handlers:
     - name: Recursively change ownership
