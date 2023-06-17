@@ -1,0 +1,8 @@
+---
+java_package_Ubuntu: openjdk-11-jdk
+group: tomcat
+user: tomcat
+shell: /bin/false
+homedir: /opt/tomcat
+tomcat_major_version: 10
+tomcat_version: 10.1.9
