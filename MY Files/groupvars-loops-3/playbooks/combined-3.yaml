@@ -52,8 +52,8 @@
         src: info.php
         dest: "{{ info_page_path }}"
       notify:
-        - restart httpd
-    - name: debug onfo.php 
+        - restart apache
+    - name: debug info.php 
       ansible.builtin.debug:
         msg: "Created info.php at {{ info_page_path }}"
     
