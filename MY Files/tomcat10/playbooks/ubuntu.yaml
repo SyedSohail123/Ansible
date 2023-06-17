@@ -62,7 +62,7 @@
       notify:
         - reload daemon
 
-    - name: ensure tomcat is enable and runing
+    - name: ensure tomcat is enabled and running
       ansible.builtin.systemd:
         name: tomcat
         enabled: yes
