@@ -62,6 +62,12 @@
       notify:
         - reload daemon
 
+    - name: ensure tomcat is enable and runing
+      ansible.builtin.systemd:
+        name: tomcat
+        enabled: yes
+        state: started
+
   handlers:
     - name: Recursively change ownership
       ansible.builtin.file:
@@ -78,6 +84,7 @@
     - name: reload daemon
       ansible.builtin.systemd:
         daemon_reload: yes
+    
     
 
       
