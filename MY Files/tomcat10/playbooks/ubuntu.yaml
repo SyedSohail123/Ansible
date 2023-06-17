@@ -68,6 +68,7 @@
         enabled: yes
         state: started
         daemon_reload: yes
+        daemon_reexec: yes
 
   handlers:
     - name: Recursively change ownership
