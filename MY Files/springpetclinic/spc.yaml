@@ -45,4 +45,5 @@
         name: spc
         enabled: yes
         state: started
+        scope: user
 
