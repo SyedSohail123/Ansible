@@ -7,12 +7,12 @@
       ansible.builtin.fail:
         msg: "This playbook is designed to run on ubuntu only"
       when: ansible_facts['distribution'] != "Ubuntu"
-          
+
     - name: installing java-17 and maven
       ansible.builtin.apt:
         name:
-          - openjdk-17-jdk
-          - maven
+        - openjdk-17-jdk
+        - maven
         update_cache: yes
         state: present
 
