@@ -32,4 +32,4 @@
     - name: Changing directory and mvn packaging
       ansible.builtin.command:
         chdir: /home/devops/spc
-        cmd: mvn clean install -U -Dmaven.test.failure.ignore=true
+        cmd: mvn package
