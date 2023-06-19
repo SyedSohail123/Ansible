@@ -28,7 +28,7 @@
         owner: devops
         group: devops
         mode: u=rwx,g=rwx,o=rx
-        recurse: yes
+        
 
     - name: find if the spc is already packaged
       ansible.builtin.stat:
