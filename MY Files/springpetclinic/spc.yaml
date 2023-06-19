@@ -20,3 +20,10 @@
       ansible.builtin.git:
         repo: https://github.com/spring-projects/spring-petclinic.git
         dest: /home/devops/spc
+
+    - name: Changing ownership of spc to devops
+      ansible.builtin.file:
+        path: /home/devops/spc
+        owner: devops
+        group: devops
+        mode: u=rwx,g=rwx,o=rx
