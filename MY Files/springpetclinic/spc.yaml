@@ -19,4 +19,4 @@
     - name: Cloning springpetclinic
       ansible.builtin.git:
         repo: https://github.com/spring-projects/spring-petclinic.git
-        dest: ~/spc
+        dest: /home/devops/spc
