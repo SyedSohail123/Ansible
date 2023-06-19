@@ -45,6 +45,10 @@
       ansible.builtin.copy:
         src: spc.service
         dest: /etc/systemd/system/spc.service
+        owner: spring
+        group: spring
+        recurse: true
+        mode: '0755'
 
     - name: ensure spc is enabled and running
       ansible.builtin.systemd:
