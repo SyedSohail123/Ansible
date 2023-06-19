@@ -1,0 +1,19 @@
+---
+- name: deploying gameoflife
+  hosts: ubuntu
+  become: yes
+  tasks:
+    - name: install java-8 and tomcat9
+      ansible.builtin.package:
+        name:
+          - openjdk-8-jdk
+          - tomcat9
+        update_cache: yes
+        state: present
+
+    - name: download gameoflife
+      ansible.builtin.get_url:
+        url: https://referenceapplicationskhaja.s3.us-west-2.amazonaws.com/gameoflife.war
+        dest: /var/lib/tomcat9/webapps/gameoflife.war 
+
+    

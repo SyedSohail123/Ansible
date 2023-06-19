@@ -1,0 +1,22 @@
+---
+- name: Deploying SpringPetclinic
+  hosts: all
+  become: yes
+  tasks:
+    - name: check if playbook is being executed on supported os
+      ansible.builtin.fail:
+        msg: "This playbook is designed to run on ubuntu only"
+      when: ansible_facts['distribution'] != "Ubuntu"
+          
+    - name: installing java-17 and maven
+      ansible.builtin.apt:
+        name:
+          - openjdk-17-jdk
+          - maven
+        update_cache: yes
+        state: present
+
+    - name: Cloning springpetclinic
+      ansible.builtin.git:
+        repo: https://github.com/spring-projects/spring-petclinic.git
+        dest: $HOME
