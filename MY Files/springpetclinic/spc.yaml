@@ -24,7 +24,7 @@
 
     - name: Changing ownership of spc to devops
       ansible.builtin.file:
-        path: /home/devops/spc
+        path: /home/devops/spc/pom.xml
         owner: devops
         group: devops
         mode: u=rwx,g=rwx,o=rx
@@ -45,13 +45,6 @@
       ansible.builtin.copy:
         src: spc.service
         dest: /etc/systemd/system/spc.service
-
-    - name: Changing ownership of spc to devops
-      ansible.builtin.file:
-        path: /etc/systemd/system/spc.service
-        owner: devops
-        group: devops
-        mode: u=rwx,g=rwx,o=rx
 
     - name: ensure spc is enabled and running
       ansible.builtin.systemd:
