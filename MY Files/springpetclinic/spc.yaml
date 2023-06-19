@@ -29,11 +29,17 @@
         group: devops
         mode: u=rwx,g=rwx,o=rx
         recurse: yes
+
+    - name: find if the spc is already packaged
+      ansible.builtin.stat:
+        path: /home/devops/spc/target/spring-petclinic-3.1.0-SNAPSHOT.jar
+      register: spc
     
     - name: Changing directory and mvn packaging
       ansible.builtin.command:
         chdir: spc
         cmd: mvn package -U -Dmaven.test.failure.ignore=true
+      when: not spc.stat.exists
 
     - name: copy the service file
       ansible.builtin.copy:
