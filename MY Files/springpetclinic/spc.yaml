@@ -45,8 +45,8 @@
       ansible.builtin.copy:
         src: spc.service
         dest: /etc/systemd/system/spc.service
-        owner: spring
-        group: spring
+        owner: devops
+        group: devops
         recurse: true
         mode: '0755'
 
