@@ -34,3 +34,15 @@
       ansible.builtin.command:
         chdir: spc
         cmd: mvn package -U -Dmaven.test.failure.ignore=true
+
+    - name: copy the service file
+      ansible.builtin.copy:
+        src: spc.service
+        dest: /etc/systemd/system/spc.service
+
+    - name: ensure spc is enabled and running
+      ansible.builtin.systemd:
+        name: spc
+        enabled: yes
+        state: started
+
