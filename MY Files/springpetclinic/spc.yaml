@@ -55,5 +55,6 @@
         name: spc
         enabled: yes
         state: started
+        daemon_reload: true
         
 
