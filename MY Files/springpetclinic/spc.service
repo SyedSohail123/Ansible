@@ -3,9 +3,9 @@ Description=The springpetclinic service
 
 
 [Service]
-User=devops
-WorkingDirectory=/home/devops/spc
-ExecStart=/usr/bin/java -jar /home/devops/spc/target/spring-petclinic-3.0.0-SNAPSHOT.jar
+User=spc
+WorkingDirectory=/home/ubuntu/spc
+ExecStart=/usr/bin/java -jar /home/ubuntu/spc/target/spring-petclinic-3.0.0-SNAPSHOT.jar
 SuccessExitStatus=101
 TimeoutStopSec=10
 Restart=on-failure
