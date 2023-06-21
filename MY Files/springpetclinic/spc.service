@@ -14,3 +14,24 @@ RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
+
+----------------------------------------------------
+I also gave spc - user and group ownership
+I gave chmod 777 spc
+
+[Unit]
+Description=The springpetclinic service
+
+
+[Service]
+User=spc
+WorkingDirectory=/home/ubuntu/spc/spring-petclinic
+ExecStart=/usr/bin/java -jar /home/ubuntu/spc/spring-petclinic/target/spring-petclinic-3.1.0-SNAPSHOT.jar
+SuccessExitStatus=101
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+
+
+[Install]
+WantedBy=multi-user.target
